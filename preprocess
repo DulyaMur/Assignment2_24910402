@@ -15,5 +15,8 @@ output_file="${input_file%.txt}.tsv"
 
 #convert windows line endings to unix line endings
 #replace semicolon with tab character
+#replace commas in floating-point numbers with dots
 #direct the final output to output file
-tr -d '\r' < "$input_file" | tr ';' '\t' > "$output_file"
+tr -d '\r' < "$input_file" | \
+tr ';' '\t' | \
+sed 's/\([0-9]\+\),\([0-9]\+\)/\1.\2/g'> "$output_file"
