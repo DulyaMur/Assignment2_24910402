@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#Author : Dulya Murage - 24910402
+
+tr -d '\r' < test.txt | awk -F';' '{
+	for (i = 1; i <= NF ; i++) {
+		if (NR == 1) {
+			header[i] = $i
+			print header[i]
+			count[i] = 0
+		} else if ($i == "") {
+			count[i]++
+		}
+	}
+}
+END {
+	for (i = 1; i <= length(header); i++) {
+		print header[i] ": " count[i]
+	}
+}'
