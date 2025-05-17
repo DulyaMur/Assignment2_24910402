@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#Author : Dulya Murage - 24910402
+
+#check whether the file name is provided
+if [ -z "$1" ]; then
+	echo "Please use $0 <fileName.txt>"
+	exit 1
+fi
+
+#assign the first argument as input_file name
+input_file="$1"
+#create output file name by replacing .txt extension with .tsv
+output_file="${input_file%.txt}.tsv"
+
+#remove any carriage return characters in input_file
+#replace semicolon with tab character
+#direct the final output to output file
+tr -d '\r' < "$input_file" | tr ';' "$(echo -e '\t')" > "$output_file"
