@@ -12,6 +12,7 @@ fi
 input_file="$1"
 #create output file name by replacing .txt extension with .tsv
 output_file="${input_file%.txt}.tsv"
+processed_data="./processed_data.tmp"
 
 #convert windows line endings to unix line endings
 #replace semicolon with tab character
@@ -22,4 +23,29 @@ tr -d '\r' < "$input_file" | \
 tr ';' '\t' | \
 sed 's/\([0-9]\+\),\([0-9]\+\)/\1.\2/g' | \
 tr -cd '\0-\177' \
-> "$output_file"
+> "$processed_data"
+
+#find max numeric id in column 1 ID
+max_id=$(awk -F'\t' '
+	BEGIN { max=0 }
+	$1 ~ /^[0-9]+$/ {
+        	if ( $1 > max ) {
+			max=$1
+		}
+	} END {
+		print max+0
+		}
+	' "$processed_data" )
+
+#replace empty first column cells with new unique Ids starting from the max numeric id found
+awk -F'\t' -v OFS='\t' -v start_id="$max_id" '
+{
+	if ($1 == "") {
+		$1=++start_id
+	}
+	print
+}
+' "$processed_data" > "$output_file"
+
+#remove created temp file
+rm "$processed_data"
