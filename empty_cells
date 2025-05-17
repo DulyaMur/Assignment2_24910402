@@ -2,7 +2,13 @@
 
 #Author : Dulya Murage - 24910402
 
-tr -d '\r' < test.txt | awk -F';' '{
+#check if the file name is provided
+if [ -z "$1" ]; then
+	echo "Please use $0 <fileName.txt>"
+	exit 1
+fi
+
+tr -d '\r' < "$1" | awk -F';' '{
 	#loop through each column field in the current line
 	for (i = 1; i <= NF ; i++) {
 		if (NR == 1) {
