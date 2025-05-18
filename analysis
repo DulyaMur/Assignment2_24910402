@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#Author : Dulya Murage - 24910402
+
 #check input file validation
 if [ -z "$1" ]; then
 	echo "Please use $0 <fileName.tsv"
