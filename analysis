@@ -16,11 +16,69 @@ awk -F'\t' '
 			if ( tolower($i) == "mechanics" ) mechanics_col=i
 		}
 
+		#handle error in case the required columns are nor present in the dataset
 		if ( !domains_col ) {
 			print "Error : Missing Domains column in the dataset"
+			exit 1
 		}
 		if ( !mechanics_col ) {
 			print "Error : Missing Mechanics column in the dataset"
+			exit 1
 		}
+
+		next
+
+	}
+
+	NR > 1 {
+		#for each row after header, proces the data
+
+		#split the 'Domains' column by (,) in to individual domains
+		n = split($(domains_col),domains,",")
+
+		for ( i = 1; i <= n; i++ ) {
+			#check if the domain is not an empty string
+			if ( domains[i] != "") {
+				#increment the count for each domain encountered
+				domains_count[domains[i]]++
+			}
+
+		}
+
+		#split the 'Mechanics' column by (,) in to individual mechanics
+		m = split($(mechanics_col),mechanics,",")
+
+		for ( i = 1; i <= m; i++ ) {
+			#check is the mechnic is not an empty string
+			if ( mechanics[i] != "") {
+				#increment the count for each mechanic encountered
+				mechanics_count[mechanics[i]]++
+			}
+		}
+	}
+
+	END {
+		#find most popular domain
+		max_domain=""
+		max_domain_count=0
+		for ( d in domains_count ) {
+			if ( domains_count[d] > max_domain_count ) {
+				max_domain=d
+				max_domain_count=domains_count[d]
+			}
+		}
+		#find most popular mechanic
+		max_mechanic=""
+		max_mechanic_count=0
+		for ( m in mechanics_count) {
+			if ( mechanics_count[m] > max_mechanic_count) {
+				max_mechanic =m
+				max_mechanic_count=mechanic_count[m]
+			}
+		}
+		print max_domain
+		print max_domain_count
+		print max_mechanic
+		print max_mechanic_count
 	}
 ' "$input_file"
