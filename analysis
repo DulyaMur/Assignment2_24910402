@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#check input file validation
+if [ -z "$1" ]; then
+	echo "Please use $0 <fileName.tsv"
+	exit 1
+fi
+
+input_file="$1"
