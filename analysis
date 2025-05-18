@@ -80,9 +80,7 @@ awk -F'\t' '
 				max_mechanic_count=mechanics_count[m]
 			}
 		}
-		print max_domain
-		print max_domain_count
-		print max_mechanic
-		print max_mechanic_count
+		printf("The most popular game mechanics is %s found in %d games\n", max_mechanic, max_mechanic_count)
+		printf("The most game domian is %s found in %d games\n", max_domain, max_domain_count)
 	}
 ' "$input_file"
