@@ -39,6 +39,8 @@ awk -F'\t' '
 		for ( i = 1; i <= n; i++ ) {
 			#check if the domain is not an empty string
 			if ( domains[i] != "") {
+				#trim leading/trailing spaces
+				gsub(/^[ \t]+|[ \t]+$/, "", domains[i])  # Trim spaces
 				#increment the count for each domain encountered
 				domains_count[domains[i]]++
 			}
@@ -51,6 +53,8 @@ awk -F'\t' '
 		for ( i = 1; i <= m; i++ ) {
 			#check is the mechnic is not an empty string
 			if ( mechanics[i] != "") {
+				#trim leading/trailing spaces
+				gsub(/^[ \t]+|[ \t]+$/, "", mechanics[i])
 				#increment the count for each mechanic encountered
 				mechanics_count[mechanics[i]]++
 			}
@@ -73,7 +77,7 @@ awk -F'\t' '
 		for ( m in mechanics_count) {
 			if ( mechanics_count[m] > max_mechanic_count) {
 				max_mechanic =m
-				max_mechanic_count=mechanic_count[m]
+				max_mechanic_count=mechanics_count[m]
 			}
 		}
 		print max_domain
