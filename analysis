@@ -11,14 +11,22 @@ fi
 input_file="$1"
 
 awk -F'\t' '
+	BEGIN {
+		OFS = "\t"
+	}
+
 	NR == 1 {
                 #find column indexes of Domains and Mechanics
 		for ( i = 1; i <= NF; i++ ) {
-			if ( tolower($i) == "domains" ) domains_col=i
-			if ( tolower($i) == "mechanics" ) mechanics_col=i
-			if ( tolower($i) == "year published" ) year_col=i
-			if ( tolower($i) == "rating average" ) rating_col=i
-			if ( tolower($i) == "complexity average" ) complexity_col=i
+			field = $i
+			gsub(/^[ \t]+|[ \t]+$/, "", field)
+			field = tolower(field)
+
+			if ( field == "domains" ) domains_col=i
+			if ( field == "mechanics" ) mechanics_col=i
+			if ( field == "year published" ) year_col=i
+			if ( field == "rating average" ) rating_col=i
+			if ( field == "complexity average" ) complexity_col=i
 		}
 
 		#handle error in case the required columns are nor present in the dataset
