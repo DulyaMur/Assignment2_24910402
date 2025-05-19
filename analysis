@@ -16,6 +16,8 @@ awk -F'\t' '
 		for ( i = 1; i <= NF; i++ ) {
 			if ( tolower($i) == "domains" ) domains_col=i
 			if ( tolower($i) == "mechanics" ) mechanics_col=i
+			if ( tolower($i) == "year published" ) year_col=i
+			if ( tolower($i) == "rating average") rating_col=i
 		}
 
 		#handle error in case the required columns are nor present in the dataset
@@ -25,6 +27,14 @@ awk -F'\t' '
 		}
 		if ( !mechanics_col ) {
 			print "Error : Missing Mechanics column in the dataset"
+			exit 1
+		}
+		if ( !year_col ) {
+			print "Error : Missing Year Published column in the dataset"
+			exit 1
+		}
+		if ( !rating_col ) {
+			print "Error : Missing Average rating column in the dataset"
 			exit 1
 		}
 
