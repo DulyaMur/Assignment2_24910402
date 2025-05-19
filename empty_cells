@@ -16,6 +16,7 @@ tr -d '\r' < "$1" | awk -F';' '{
 			header[i] = $i
 			#initilize empty field counters array
 			count[i] = 0
+			max_col = NF
 		} else if ($i == "") {
 			#if a column cell is empty, increment the corresponding counter
 			count[i]++
@@ -23,7 +24,7 @@ tr -d '\r' < "$1" | awk -F';' '{
 	}
 }
 END {
-	for (i = 1; i <= length(header); i++) {
+	for (i = 1; i <= max_col; i++) {
 		#print the number of empty cells per column
 		print header[i] ": " count[i]
 	}
