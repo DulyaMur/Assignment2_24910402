@@ -1,35 +1,38 @@
-Author
-Dulya Murage
+# Board Game Data Analysis
 
-Overview
+**Author**: Dulya Murage
 
-This project handles analyzing the dataset from Board Game Geek on Kaggle. The analysis is conducted using Shell scripts.
+## Overview
+
+This project handles analyzing the dataset from **Board Game Geek** on Kaggle. The analysis is conducted using Shell scripts.  
 The goal is to answer the following four research questions:
 
-1.What is the most popular domain and most popular game mechanic?
-2.What is the correlation between a game's publication year and its average rating?
-3.What is the correlation between a game's complexity and its average rating?
+1. **What is the most popular domain and most popular game mechanic?**
+2. **What is the correlation between a game's publication year and its average rating?**
+3. **What is the correlation between a game's complexity and its average rating?**
 
-File Structure
+## File Structure
 
+```plaintext
 project-directory/
 │
 ├── analysis          # Top-level analysis script
 ├── preprocess        # Top-level preprocessing script
 ├── empty_cells       # Top-level data quality checker
-└── README.md   
-
+└── README.md         # Project documentation
+```
 Script
 
 1.empty_cells
 	Usage : ./empty_cells <input_file_name>.txt
 2.preprocess
-	Description : Preprocess the dataset to prepare it for analysis.
-		      Converts semicolon (;) separators to tab (\t)
-		      Converts Windows line endings (CRLF) to Unix line endings (LF)
-		      Converts decimal commas (e.g., 4,5) to decimal points (4.5)
-		      Removes non-ASCII characters
-		      Generates unique IDs for rows where the ID is missing
+	Description: Preprocess the dataset to prepare it for analysis. The script performs the following actions:
+	Converts semicolon (;) separators to tab (\t).
+	Converts Windows line endings (CRLF) to Unix line endings (LF).
+	Converts decimal commas (e.g., 4,5) to decimal points (4.5).
+	Removes non-ASCII characters.
+
+Generates unique IDs for rows where the ID is missing.
 	Usage : ./preprocess <input_file_name>.txt
 3.analysis
 	Description : Analyzes the cleaned dataset to answer the main four research questions.
