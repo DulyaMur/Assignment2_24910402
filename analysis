@@ -86,23 +86,20 @@ awk -F'\t' '
 		}
 
 		#calculate inputs for pearson correlation formula
-		year = $(year_col)
-		rating = $(rating_col)
-		complexity = $(complexity_col)
+		original_year = $(year_col)
+		original_rating = $(rating_col)
+		original_complexity = $(complexity_col)
 
 		#clean data
-		gsub(/^[ \t]+|[ \t]+$/, "", year)
-        	gsub(/^[ \t]+|[ \t]+$/, "", rating)
-        	gsub(/^[ \t]+|[ \t]+$/, "", complexity)
+		gsub(/^[ \t]+|[ \t]+$/, "", original_year)
+        	gsub(/^[ \t]+|[ \t]+$/, "", original_rating)
+        	gsub(/^[ \t]+|[ \t]+$/, "", original_complexity)
                 
-                #confirm valid integer values
-        	year += 0
-        	rating += 0
-        	complexity += 0
-
 		#year vs rating correlation
 		#lets consider x as variable year and y as variable rating
-		if ( year != "" && rating != "" ) {
+		if ( original_year != "" && original_rating != "" ) {
+			year = original_year + 0
+			rating = original_rating + 0
 			num++
 			sum_x += year
 			sum_y += rating
@@ -113,7 +110,10 @@ awk -F'\t' '
 
 		#complexity vs rating correlation
 		#lets consider c as variable complexity and r as variable rating
-		if ( complexity != "" && rating != "" ) {
+		if ( original_complexity != "" && original_rating != "" ) {
+			complexity = original_complexity + 0
+			rating = original_rating + 0
+
 			num_points++
 			sum_c += complexity
 			sum_r += rating
