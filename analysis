@@ -90,6 +90,16 @@ awk -F'\t' '
 		rating = $(rating_col)
 		complexity = $(complexity_col)
 
+		#clean data
+		gsub(/^[ \t]+|[ \t]+$/, "", year)
+        	gsub(/^[ \t]+|[ \t]+$/, "", rating)
+        	gsub(/^[ \t]+|[ \t]+$/, "", complexity)
+                
+                #confirm valid integer values
+        	year += 0
+        	rating += 0
+        	complexity += 0
+
 		#year vs rating correlation
 		#lets consider x as variable year and y as variable rating
 		if ( year != "" && rating != "" ) {
