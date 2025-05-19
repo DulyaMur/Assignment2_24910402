@@ -24,18 +24,20 @@ project-directory/
 
 ```plaintext
 1.empty_cells
+	Description: This script checks for missing data in the dataset and reports the number of empty cells per column.
 	Usage : ./empty_cells <input_file_name>.txt
 2.preprocess
 	Description: Preprocess the dataset to prepare it for analysis. The script performs the following actions:
-	Converts semicolon (;) separators to tab (\t).
-	Converts Windows line endings (CRLF) to Unix line endings (LF).
-	Converts decimal commas (e.g., 4,5) to decimal points (4.5).
-	Removes non-ASCII characters.
+		Converts semicolon (;) separators to tab (\t).
+		Converts Windows line endings (CRLF) to Unix line endings (LF).
+		Converts decimal commas (e.g., 4,5) to decimal points (4.5).
+		Removes non-ASCII characters.
+    	Generates unique IDs for rows where the ID is missing.
 
-Generates unique IDs for rows where the ID is missing.
 	Usage : ./preprocess <input_file_name>.txt
 3.analysis
 	Description : Analyzes the cleaned dataset to answer the main four research questions.
+
 	Usage : ./analysis <output_file_name>.tsv
 ```
 Output
