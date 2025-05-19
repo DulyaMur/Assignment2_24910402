@@ -76,7 +76,7 @@ awk -F'\t' '
 		m = split($(mechanics_col),mechanics,",")
 
 		for ( i = 1; i <= m; i++ ) {
-			#check is the mechanic is not an empty string
+			#check if the mechanic is not an empty string
 			if ( mechanics[i] != "" ) {
 				#trim leading/trailing spaces
 				gsub(/^[ \t]+|[ \t]+$/, "", mechanics[i])
@@ -151,7 +151,7 @@ awk -F'\t' '
 
 		#check if denominator is zero to avoid zero devision error
 		if (denominator == 0) {
-			print "Can not perform pearson corrlation due to denominator being zero"
+			print "Can not perform pearson correlation due to denominator being zero"
 		} else {
 			correlation = numerator/denominator
 			printf("The correlation between the year of publication and the average rating is %.3f\n", correlation)
