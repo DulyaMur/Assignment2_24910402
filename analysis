@@ -71,6 +71,20 @@ awk -F'\t' '
 				mechanics_count[mechanics[i]]++
 			}
 		}
+
+		#calculate inputs for pearson correlation formula
+		year=$(year_col)
+		rating=$(rating_col)
+
+		#let's consider x as varibale year and y as varibale rating
+		if ( year != "" && rating != "" ) {
+			num++
+			sum_x += year
+			sum_y += rating
+			sum_x_squared += year * year
+			sum_y_squared += rating * rating
+			sum_xy += year * rating
+		}
 	}
 
 	END {
