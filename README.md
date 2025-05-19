@@ -21,8 +21,8 @@ project-directory/
 ├── empty_cells       # Top-level data quality checker
 └── README.md         # Project documentation
 ```
-Script
 
+```plaintext
 1.empty_cells
 	Usage : ./empty_cells <input_file_name>.txt
 2.preprocess
@@ -37,12 +37,14 @@ Generates unique IDs for rows where the ID is missing.
 3.analysis
 	Description : Analyzes the cleaned dataset to answer the main four research questions.
 	Usage : ./analysis <output_file_name>.tsv
-
+```
 Output
 
+```plaintext
 Example
 The most popular game mechanics is Hand Management found in 48 games
 The most game domain is Strategy Games found in 77 games
 
 The correlation between the year of publication and the average rating is 0.226
 The correlation between the complexity of a game and its average rating is 0.426
+```
