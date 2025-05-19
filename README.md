@@ -2,6 +2,8 @@
 
 **Author**: Dulya Murage
 
+GitHub repo : https://github.com/DulyaMur/Assignment2_24910402
+
 ## Overview
 
 This project handles analyzing the dataset from **Board Game Geek** on Kaggle. The analysis is conducted using Shell scripts.  
